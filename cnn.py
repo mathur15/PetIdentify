@@ -5,6 +5,7 @@ from keras.layers import Convolution2D
 from keras.layers import MaxPooling2D
 from keras.layers import Flatten
 from keras.layers import Dense
+from keras.layers import Dropout
 from keras.preprocessing.image import ImageDataGenerator
 
 #initialize CNN
@@ -26,7 +27,8 @@ classifier.add(Flatten())
 #     print(layers.name,filter.shape)
 # =============================================================================
 #Good practice- take powers of 2 for hidden layers
-classifier.add(Dense(output_dim = 128,activation='relu'))
+classifier.add(Dense(output_dim = 256,activation='relu'))
+classifier.add(Dropout(0.1))
 classifier.add(Dense(output_dim = 1,activation = 'sigmoid'))
 
 classifier.compile(optimizer='adam', loss='binary_crossentropy',
