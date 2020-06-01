@@ -15,6 +15,11 @@ classifier = Sequential()
 #ReLU function
 classifier.add(Convolution2D(32,3,3,input_shape=(64,64,3),activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2,2)))
+
+#to optimize the accuracy on the test add another convolution layer
+classifier.add(Convolution2D(32,3,3,activation='relu'))
+classifier.add(MaxPooling2D(pool_size(2,2)))
+
 classifier.add(Flatten())
 
 #classifier.summary()
@@ -27,7 +32,7 @@ classifier.add(Flatten())
 #     print(layers.name,filter.shape)
 # =============================================================================
 #Good practice- take powers of 2 for hidden layers
-classifier.add(Dense(output_dim = 256,activation='relu'))
+classifier.add(Dense(output_dim = 128,activation='relu'))
 classifier.add(Dropout(0.1))
 classifier.add(Dense(output_dim = 1,activation = 'sigmoid'))
 
