@@ -7,6 +7,7 @@ from keras.layers import Flatten
 from keras.layers import Dense
 from keras.layers import Dropout
 from keras.preprocessing.image import ImageDataGenerator
+from keras.preprocessing import image
 
 #initialize CNN
 classifier = Sequential()
@@ -72,5 +73,14 @@ classifier.fit(
            epochs=25,
            validation_data=test_set,
            validation_steps=2000)
+
+#make a single prediction
+
+test_image = image.load_img('dataset/single_prediction/cat_or_dog_1.jpg', 
+                            target_size(64,64))
+test_image = image.img_to_array(test_image)
+test_image = np.expand_dims(test_image,axis=0)
+result = classifier.predict(test_image)
+print(training_set.class_indices)
 
 
