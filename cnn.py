@@ -41,11 +41,11 @@ classifier.add(Flatten())
 #     print(layers.name,filter.shape)
 # =============================================================================
 #Good practice- take powers of 2 for hidden layers
-classifier.add(Dense(output_dim = 64,activation='relu'))
+classifier.add(Dense(output_dim = 128,activation='relu'))
+classifier.add(Dropout(0.6))
+classifier.add(Dense(output_dim = 128,activation='relu'))
 classifier.add(Dropout(0.3))
-classifier.add(Dense(output_dim = 64,activation='relu'))
-classifier.add(Dropout(0.1))
-classifier.add(Dense(output_dim = 64,activation='relu'))
+classifier.add(Dense(output_dim = 128,activation='relu'))
 classifier.add(Dense(output_dim = 1,activation = 'sigmoid'))
 
 classifier.compile(optimizer='adam', loss='binary_crossentropy',
@@ -77,7 +77,7 @@ test_set = test_datagen.flow_from_directory(
 #fit on train set and test performance on the test set
 classifier.fit(
            x = train_set,
-           epochs=25,
+           epochs=35,
            validation_data=test_set)
 
 #make a single prediction cat=0 and dogs=1

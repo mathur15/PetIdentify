@@ -11,7 +11,7 @@
 
 #### In order to counter overfitting two dropout layers were added in.
 
-#### So far, an accuracy of 82% is being achieved on the test set with a batch size of 32. 
+#### So far, an accuracy of 86% is being achieved on the test set with a batch size of 32 and 35 epochs.
 
 
       
