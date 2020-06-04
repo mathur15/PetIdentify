@@ -45,7 +45,7 @@ classifier.add(Dense(output_dim = 128,activation='relu'))
 classifier.add(Dropout(0.6))
 classifier.add(Dense(output_dim = 128,activation='relu'))
 classifier.add(Dropout(0.3))
-classifier.add(Dense(output_dim = 128,activation='relu'))
+classifier.add(Dense(output_dim = 64,activation='relu'))
 classifier.add(Dense(output_dim = 1,activation = 'sigmoid'))
 
 classifier.compile(optimizer='adam', loss='binary_crossentropy',
@@ -75,10 +75,14 @@ test_set = test_datagen.flow_from_directory(
            class_mode='binary')
 
 #fit on train set and test performance on the test set
-classifier.fit(
+fitted_model = classifier.fit(
            x = train_set,
            epochs=35,
            validation_data=test_set)
+
+#print(fitted_model.history)
+mean_accuracy = np.mean(fitted_model.history['acc'])
+#print(mean_accuracy)
 
 #make a single prediction cat=0 and dogs=1
 #print(train_set.class_indices)
