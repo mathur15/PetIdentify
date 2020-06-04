@@ -15,7 +15,7 @@ classifier = Sequential()
 #32 feature detectors of 3x3
 #input size of image is 64*64
 #ReLU function
-classifier.add(Convolution2D(32,3,3,input_shape=(32,32,3),activation='relu'))
+classifier.add(Convolution2D(32,3,3,input_shape=(64,64,3),activation='relu'))
 #classifier.add(Convolution2D(32,3,3,input_shape=(32,32,3),activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2,2)))
 
@@ -26,8 +26,8 @@ classifier.add(MaxPooling2D(pool_size=(2,2)))
 classifier.add(Convolution2D(32,3,3,activation='relu'))
 classifier.add(MaxPooling2D(pool_size=(2,2)))
 
-#classifier.add(Convolution2D(32,3,3,activation='relu'))
-#classifier.add(MaxPooling2D(pool_size=(2,2)))
+classifier.add(Convolution2D(32,3,3,activation='relu'))
+classifier.add(MaxPooling2D(pool_size=(2,2)))
 
 classifier.add(Flatten())
 
@@ -44,6 +44,7 @@ classifier.add(Flatten())
 classifier.add(Dense(output_dim = 64,activation='relu'))
 classifier.add(Dropout(0.3))
 classifier.add(Dense(output_dim = 64,activation='relu'))
+classifier.add(Dropout(0.1))
 classifier.add(Dense(output_dim = 64,activation='relu'))
 classifier.add(Dense(output_dim = 1,activation = 'sigmoid'))
 
@@ -61,15 +62,15 @@ train_datagen = ImageDataGenerator(
 test_datagen = ImageDataGenerator(rescale=1./255)
 
 #class_mode is binary as there are two possible outcomes
-train_set = test_datagen.flow_from_directory(
+train_set = train_datagen.flow_from_directory(
            'training_set',
-            target_size=(32, 32),
+            target_size=(64, 64),
             batch_size=32,
             class_mode='binary')
 
 test_set = test_datagen.flow_from_directory(
            'test_set',
-           target_size=(32, 32),
+           target_size=(64, 64),
            batch_size=32,
            class_mode='binary')
 
